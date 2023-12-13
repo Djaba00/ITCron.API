@@ -21,7 +21,6 @@
   <ItemGroup>
     <None Remove="Services\" />
     <None Remove="Models\" />
-    <None Remove="ViewModels\" />
     <None Remove="Models\InternetProtocol\" />
     <None Remove="Interfaces\" />
     <None Remove="DataAccess\" />
@@ -31,7 +30,6 @@
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Models\InternetProtocol\" />
     <Folder Include="Interfaces\" />
     <Folder Include="DataAccess\" />

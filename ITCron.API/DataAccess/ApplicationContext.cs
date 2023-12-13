@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection.Emit;
-using ITCron.API.DataAccess.Configurations;
+﻿using ITCron.API.DataAccess.Configurations;
 using ITCron.API.Models.InternetProtocol;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +10,6 @@ namespace ITCron.API.DataAccess
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

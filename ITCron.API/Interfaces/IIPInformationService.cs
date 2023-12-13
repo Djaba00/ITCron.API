@@ -6,7 +6,6 @@ namespace ITCron.API.Interfaces
 	public interface IIPInformationService
 	{
         Task<IPInformation> GetIPInfo(string address);
-
     }
 }
 
