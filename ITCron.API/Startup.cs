@@ -4,6 +4,7 @@ using ITCron.API.Interfaces;
 using ITCron.API.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
 
 namespace ITCron.API
 {
@@ -25,6 +26,13 @@ namespace ITCron.API
             services.AddDbContext<ApplicationContext>(options => options.UseSqlite(dbConnection));
 
             services.AddTransient<IIPInformationService, IPInformationService>();
+
+            services.AddHttpClient<IIPInformationService, IPInformationService>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["ip-infoToken:BaseUrl"]);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            });
                 
             services.AddControllers();
 
