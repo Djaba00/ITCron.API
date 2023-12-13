@@ -9,19 +9,13 @@ namespace ITCron.API.Services
 {
 	public class IPInformationService : IIPInformationService
     {
-        HttpClient Client = new HttpClient();
         string Token;
-
         ApplicationContext db; 
 
         public IPInformationService(ApplicationContext db, IConfiguration configuration)
 		{
             this.db = db;
             Token = configuration["ip-infoToken:DefaultToken"];
-
-            Client.BaseAddress = new Uri("http://ipinfo.io/curl");
-            Client.DefaultRequestHeaders.Accept.Clear();
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<IPInformation> GetIPInfo(string address)
@@ -40,9 +34,15 @@ namespace ITCron.API.Services
 
         private async Task<IPInformation> GetIPInfoFromNet(string address)
         {
+            HttpClient сlient = new HttpClient();
+
+            сlient.BaseAddress = new Uri("http://ipinfo.io/curl");
+            сlient.DefaultRequestHeaders.Accept.Clear();
+            сlient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             var path = $"{address}?{Token}";
 
-            var response = await Client.GetAsync(path);
+            var response = await сlient.GetAsync(path);
 
             var result = await response.Content.ReadFromJsonAsync<IPInformation>();
 
